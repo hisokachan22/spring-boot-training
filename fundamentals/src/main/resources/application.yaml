@@ -1,0 +1,4 @@
+logging:
+  level:
+    org:
+      springframework: info #Choose target logging level: off, error, warn, info, debug and trace (default info)
