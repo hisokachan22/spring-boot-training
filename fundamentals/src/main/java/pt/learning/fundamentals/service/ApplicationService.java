@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pt.learning.fundamentals.dto.ApplicationInformationDto;
 import pt.learning.fundamentals.entity.Application;
+import pt.learning.fundamentals.exceptions.ApplicationNotFoundException;
 import pt.learning.fundamentals.repository.ApplicationRepository;
 
 import java.util.List;
@@ -24,7 +25,8 @@ public class ApplicationService {
     }
 
     public ApplicationInformationDto findApplicationWithName(final String name) {
-        Application application = applicationRepository.findByName(name).orElse(Application.builder().build());
+        Application application = applicationRepository.findByName(name).orElseThrow(
+                new ApplicationNotFoundException("Application "+ name +" not found."));
 
         return ApplicationInformationDto.builder()
                 .owner(application.getOwner())
