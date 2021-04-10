@@ -15,7 +15,7 @@ import javax.persistence.Entity;
 @Entity
 @Data
 public class Application extends BaseEntity {
-
+    @Column(unique = true)
     private String name;
     @Column(length = 2000)
     private String description;
